@@ -1,0 +1,17 @@
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Python
+*.pyc
+__pycache__/
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+
+# Environment Variables
+.env
