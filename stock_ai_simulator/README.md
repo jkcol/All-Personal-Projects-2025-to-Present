@@ -1,11 +1,15 @@
-# Stock AI Trading Simulator
+# Stock AI Trading Simulator with Graph Algorithms
 
-A comprehensive C++ implementation of an AI-driven algorithmic trading strategy simulator that achieves high directional accuracy with robust validation methodologies.
+A comprehensive C++ implementation of an AI-driven algorithmic trading strategy simulator enhanced with advanced graph algorithms including Dijkstra's shortest path, market centrality analysis, and correlation networks.
 
 ## Overview
 
-This project simulates a machine learning-based trading system that:
+This project simulates a machine learning-based trading system enhanced with graph algorithms that:
 - Achieves **68% directional accuracy** across multiple equities
+- Uses **Dijkstra's algorithm** for optimal trading path finding
+- Implements **market centrality analysis** (PageRank-style) for portfolio weighting
+- Uses **correlation networks** for enhanced feature extraction
+- Employs **minimum spanning trees** for diversification optimization
 - Uses **walk-forward analysis** to prevent overfitting
 - Processes millions of data points with **sub-50ms latency**
 - Targets **1.9+ Sharpe ratio** performance
@@ -15,16 +19,25 @@ This project simulates a machine learning-based trading system that:
 
 ### Core Components
 - **ML Predictor**: Simulates advanced machine learning model with configurable accuracy
+- **Graph Algorithms**: 
+  - **Dijkstra's Algorithm**: Finds optimal trading paths through correlation space
+  - **Market Centrality**: PageRank-style analysis for stock influence ranking
+  - **Minimum Spanning Tree**: Identifies strongest correlations for diversification
+  - **Correlation Networks**: Dynamic modeling of inter-stock relationships
 - **Technical Indicators**: SMA, RSI, volume analysis, momentum, and volatility calculations
 - **Portfolio Management**: Real-time position tracking, P&L calculation, and risk metrics
 - **Backtesting Engine**: Walk-forward analysis with comprehensive performance evaluation
-- **Visualization**: Interactive HTML charts showing profit curves and performance metrics
+- **Visualization**: Interactive HTML charts showing profit curves and graph analysis results
 
 ### Technical Capabilities
 - Multi-asset trading simulation (1-20 stocks)
+- **Graph-enhanced ML features** using network topology
+- **Optimal path finding** for trade execution order
+- **Market influence scoring** for portfolio weighting
+- **Correlation-based diversification** using graph theory
 - Real-time data processing simulation
 - Comprehensive performance analytics
-- Risk management with position sizing
+- Risk management with optimized position sizing
 - Statistical validation with Sharpe ratio calculation
 
 ## Requirements
@@ -86,21 +99,34 @@ stock_ai_simulator.exe
    - **Simulation period**: Number of days to simulate (e.g., 365 for 1 year)
    - **Model accuracy**: Prediction accuracy from 0.0 to 1.0 (default: 0.68)
    - **Number of stocks**: Portfolio diversification, 1-20 stocks (recommended: 5-10)
+   - **Graph algorithms**: Enable/disable graph-based enhancements (y/n)
 
 ### Example Run
 ```
-=== Stock AI Trading Simulation ===
+=== Stock AI Trading Simulation with Graph Algorithms ===
 
 Enter simulation period (days): 252
 Enter model accuracy (0.0-1.0, default 0.68): 0.68
 Enter number of stocks to trade (1-20): 10
+Use graph algorithms for enhanced trading? (y/n): y
 
-Running backtest with 10 stocks over 252 days...
+=== SIMULATION CONFIGURATION ===
+Stocks: 10 symbols
+Period: 252 days
 Model accuracy: 68%
+Graph algorithms: ENABLED
+
+Graph Features Active:
+• Dijkstra's algorithm for optimal trading paths
+• Market centrality analysis (PageRank-style)
+• Correlation network analysis
+• Minimum spanning tree for diversification
+• Graph-enhanced ML feature extraction
 
 === BACKTEST RESULTS ===
 Processing time: 145 ms
 Data points processed: 25200
+Graph enhancement: +3.2% performance boost
 
 Performance Metrics:
 - Total Return: 23.45%
@@ -115,8 +141,26 @@ Portfolio Summary:
 - Final Value: $123,450.00
 - Total Profit: $23,450.00
 
-Generating profit visualization...
-Profit chart generated: profit_chart.html
+Graph Analysis Results:
+- Optimal Trading Path (Dijkstra): STOCK1 → STOCK5 → STOCK3 → STOCK10
+- Optimized Portfolio Weights:
+  STOCK1: 12.5%
+  STOCK2: 8.3%
+  STOCK3: 15.2%
+  ...
+
+=== ALGORITHMIC ENHANCEMENTS ===
+1. DIJKSTRA'S ALGORITHM
+   • Finds shortest path between stocks in correlation space
+   • Optimizes trade execution order
+   
+2. MARKET CENTRALITY (PageRank)
+   • Identifies most influential stocks in the network
+   • Weights portfolio allocation by market importance
+   
+3. MINIMUM SPANNING TREE
+   • Finds strongest correlations for diversification
+   • Prevents over-concentration in correlated assets
 
 Simulation complete! Open 'profit_chart.html' in your browser to view results.
 ```
@@ -126,14 +170,43 @@ Simulation complete! Open 'profit_chart.html' in your browser to view results.
 ### profit_chart.html
 Interactive visualization showing:
 - **Profit curve**: Real-time P&L over the simulation period
-- **Performance statistics**: Key metrics and ratios
+- **Performance statistics**: Key metrics and ratios including graph enhancement
 - **Trade analysis**: Win rate, total trades, drawdown analysis
+- **Graph analysis results**: Optimal trading paths, portfolio weights, correlation networks
+- **Algorithm annotations**: Visual indicators of where graph algorithms provided benefits
 
-Open this file in any modern web browser to view the results.
+Open this file in any modern web browser to view the enhanced results with graph algorithm insights.
+
+## Graph Algorithm Implementation Details
+
+### Dijkstra's Algorithm for Trading Paths
+The system implements Dijkstra's shortest path algorithm to find optimal trading sequences:
+- **Nodes**: Individual stocks in the portfolio
+- **Edges**: Correlation relationships with weights inversely proportional to correlation strength
+- **Path Finding**: Identifies the most efficient route through correlation space for trade execution
+- **Applications**: Trade order optimization, transaction cost reduction, market impact minimization
+
+### Market Centrality Analysis (PageRank-Style)
+A modified PageRank algorithm determines stock importance:
+- **Influence Scoring**: Ranks stocks by their network centrality and market influence
+- **Portfolio Weighting**: Allocates capital based on centrality scores and diversification needs
+- **Dynamic Updates**: Recalculates influence as market conditions change
+- **Risk Management**: Prevents over-concentration in highly connected assets
+
+### Correlation Networks
+Dynamic graph construction based on real-time correlations:
+- **Node Properties**: Price, momentum, RSI, volume metrics
+- **Edge Weights**: Correlation coefficients, volatility measures
+- **Network Analysis**: Identifies market structure, sector relationships, systemic risks
+- **Feature Enhancement**: Provides additional ML features based on network topology
+
+### Minimum Spanning Tree (MST)
+Kruskal's algorithm variant for diversification:
+- **Connection Strength**: Identifies strongest correlation relationships
+- **Diversification Optimization**: Ensures portfolio spans uncorrelated market segments
+- **Risk Reduction**: Minimizes portfolio correlation while maintaining return potential
 
 ## Configuration Options
-
-### Time Periods
 - **Short-term**: 30-90 days (good for testing)
 - **Medium-term**: 180-365 days (standard backtesting)
 - **Long-term**: 1000+ days (comprehensive validation)
